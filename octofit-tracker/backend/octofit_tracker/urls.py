@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import UserViewSet, TeamViewSet, ActivityViewSet, WorkoutViewSet, LeaderboardViewSet, api_root
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .views import UserViewSet, TeamViewSet, ActivityViewSet, WorkoutViewSet, LeaderboardViewSet
+import os
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -25,8 +28,24 @@ router.register(r'activities', ActivityViewSet)
 router.register(r'workouts', WorkoutViewSet)
 router.register(r'leaderboards', LeaderboardViewSet)
 
+@api_view(['GET'])
+def dynamic_api_root(request, format=None):
+    codespace_name = os.environ.get('CODESPACE_NAME')
+    if codespace_name:
+        base = f"https://{codespace_name}-8000.app.github.dev"
+    else:
+        # fallback to request-derived base without trailing slash
+        base = request.build_absolute_uri('/')[:-1]
+    return Response({
+        'users': f"{base}/api/users/",
+        'teams': f"{base}/api/teams/",
+        'activities': f"{base}/api/activities/",
+        'workouts': f"{base}/api/workouts/",
+        'leaderboards': f"{base}/api/leaderboards/",
+    })
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', api_root, name='api-root'),
-    path('', include(router.urls)),
+    path('', dynamic_api_root, name='api-root'),
+    path('api/', include(router.urls)),
 ]
