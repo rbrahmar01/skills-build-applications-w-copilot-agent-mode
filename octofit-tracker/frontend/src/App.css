@@ -1,0 +1,116 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+/* Layout refinements */
+body {
+  background-color: #f7f9fc;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: #fff !important;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 4px;
+  height: 3px;
+  background: linear-gradient(90deg,#0d6efd,#6610f2);
+  border-radius: 2px;
+}
+
+.table thead th {
+  background: #0d6efd;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: #f1f5ff;
+}
+
+.section-header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:1rem;
+}
+
+.section-header h2 {
+  margin:0;
+  font-size:1.5rem;
+  font-weight:600;
+}
+
+.data-table-wrapper {
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius: .5rem;
+  padding:1rem 1.25rem;
+  box-shadow:0 2px 4px rgba(0,0,0,0.04);
+  margin-bottom:2rem;
+}
+
+.card.h-100 {
+  box-shadow:0 2px 4px rgba(0,0,0,0.05);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.card.h-100:hover {
+  transform: translateY(-2px);
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.modal-json {
+  max-height:50vh;
+  overflow:auto;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size:.85rem;
+  background:#1e1e1e;
+  color:#e5e5e5;
+  padding:1rem;
+  border-radius:.25rem;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
