@@ -8,8 +8,12 @@ export default function Workouts() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchData('workouts')
-      .then(data => setItems(data))
+    const endpoint = 'workouts';
+    fetchData(endpoint)
+      .then(data => {
+        console.log(`[Workouts] Data from ${endpoint}:`, data);
+        setItems(data);
+      })
       .catch(e => setError(e.message));
   }, []);
 

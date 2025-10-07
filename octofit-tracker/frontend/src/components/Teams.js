@@ -8,8 +8,12 @@ export default function Teams() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchData('teams')
-      .then(data => setItems(data))
+    const endpoint = 'teams';
+    fetchData(endpoint)
+      .then(data => {
+        console.log(`[Teams] Data from ${endpoint}:`, data);
+        setItems(data);
+      })
       .catch(e => setError(e.message));
   }, []);
 

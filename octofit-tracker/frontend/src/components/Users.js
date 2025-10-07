@@ -8,8 +8,12 @@ export default function Users() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchData('users')
-      .then(data => setItems(data))
+    const endpoint = 'users';
+    fetchData(endpoint)
+      .then(data => {
+        console.log(`[Users] Data from ${endpoint}:`, data);
+        setItems(data);
+      })
       .catch(e => setError(e.message));
   }, []);
 

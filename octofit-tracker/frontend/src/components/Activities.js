@@ -8,8 +8,12 @@ export default function Activities() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchData('activities')
-      .then(data => { setItems(data); })
+    const endpoint = 'activities';
+    fetchData(endpoint)
+      .then(data => {
+        console.log(`[Activities] Data from ${endpoint}:`, data);
+        setItems(data);
+      })
       .catch(e => setError(e.message));
   }, []);
 

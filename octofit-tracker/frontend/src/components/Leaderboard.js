@@ -8,8 +8,12 @@ export default function Leaderboard() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    fetchData('leaderboards')
-      .then(data => setItems(data))
+    const endpoint = 'leaderboards';
+    fetchData(endpoint)
+      .then(data => {
+        console.log(`[Leaderboard] Data from ${endpoint}:`, data);
+        setItems(data);
+      })
       .catch(e => setError(e.message));
   }, []);
 

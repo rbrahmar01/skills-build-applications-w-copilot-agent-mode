@@ -9,6 +9,7 @@ import Workouts from './components/Workouts';
 function App() {
   return (
     <div>
+      {/* Main navigation using react-router-dom */}
       <nav className="navbar navbar-expand navbar-dark bg-dark mb-4">
         <div className="container-fluid">
           <span className="navbar-brand">OctoFit Tracker</span>
